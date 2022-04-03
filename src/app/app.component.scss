@@ -1,0 +1,50 @@
+.btn {
+  margin-left: 10px;
+}
+
+.navbar {
+  padding: 0;
+  z-index: 4;
+  font-size: 1.6rem;
+  font-weight: normal;
+  padding: 6px;
+}
+
+ul {
+  a {
+    position: relative;
+    cursor: pointer;
+    line-height: 1; /*задаём высоту строки*/
+    text-decoration: none; /*убираем подчёркивание*/
+  }
+  a:after {
+    display: block;
+    position: absolute;
+    left: 0;
+    width: 0;
+    height: 2px;
+    background-color: #b6533e;
+    content: "";
+    transition: width 0.3s ease-out;
+  }
+
+  a:hover:after,
+  a:focus:after {
+    width: 100%; /*устанавливаем значение 100% чтобы ссылка подчёркивалась полностью*/
+  }
+}
+
+//.navbar-brand {
+//  color: white;
+//
+//}
+//
+//.navbar-light .navbar-nav .show > .nav-link, .navbar-light .navbar-nav .nav-link.active {
+//  color: white;
+//}
+
+
+
+
+
+

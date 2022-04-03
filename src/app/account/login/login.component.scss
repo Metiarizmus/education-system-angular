@@ -1,0 +1,19 @@
+.card {
+  margin: 40px;
+}
+
+input {
+  &.ng-invalid.ng-touched{
+    border: 1px solid red;
+  }
+  &.ng-valid.ng-touched {
+    border: 3px solid green;
+  }
+}
+.form-control validation {
+  color: red;
+}
+
+//*{
+//  background: url("https://oboi.ws/wallpapers/17_12338_oboi_firewatch_1920x1080.jpg") no-repeat;
+//}
