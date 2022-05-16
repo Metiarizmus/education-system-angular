@@ -9,7 +9,7 @@
 
                 <p class="text-center h1 fw-bold mb-4 mx-md-4 mt-1">Sign up</p>
 
-                <form class="mx-1 mx-md-4" [formGroup]="form" (ngSubmit)="submit()" style="width: 72%; padding-left: 20%">
+                <form class="mx-1 mx-md-4" [formGroup]="form" (ngSubmit)="signup()" style="width: 72%; padding-left: 20%" enctype="multipart/form-data">
 
                   <div class="d-flex flex-row align-items-center mb-4">
                     <i class="fas fa-user fa-lg me-3 fa-fw"></i>
@@ -39,6 +39,16 @@
                           Last name cant be empty
                         </small>
                       </div>
+                    </div>
+                  </div>
+
+                  <div class="d-flex flex-row align-items-center mb-4">
+                    <i class="fas fa-camera fa-lg me-3 fa-fw"></i>
+                    <div class="form-outline flex-fill mb-0">
+                      <input type="file" accept="image/*" id="form3Example2c" class="form-control"
+                             formControlName="avatar" required="false"
+                             (change)="onSelectFile($event)"
+                      >
                     </div>
                   </div>
 
@@ -117,6 +127,9 @@
                   </div>
 
                 </form>
+
+                <div>
+                </div>
 
               </div>
 

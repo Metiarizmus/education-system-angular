@@ -1,0 +1,66 @@
+<!--<button (click)="getOrgs()">click</button>-->
+
+
+<!--<div class="content-orgs">-->
+
+<!--</div>-->
+
+<div class="content">
+  <div class="novig">
+    <aside>
+      <ul class="nav flex-column">
+
+        <li class="nav-item">
+          <a class="nav-link" (click)="getOrgs()">
+            <span class="ms-1 d-none d-sm-inline">Find public org</span>
+          </a>
+        </li>
+
+        <li class="nav-item">
+          <a class="nav-link">
+            <span class="ms-1 d-none d-sm-inline">Create org</span>
+          </a>
+        </li>
+
+        <li class="nav-item">
+          <a class="nav-link">
+            <span class="ms-1 d-none d-sm-inline">My orgs</span>
+          </a>
+        </li>
+
+      </ul>
+
+    </aside>
+  </div>
+
+  <div class="main">
+
+    <div class="row">
+      <div *ngFor="let org of orgs" class="col-md-6 col-xl-3">
+        <div class="card m-b-30">
+          <div class="card-body row">
+            <div class="col-6">
+              <a href=""><img src="https://gravatar.com/avatar/2386219297a63fce888ab9fbff058851?s=400&d=robohash&r=x"
+                              alt="" class="img-fluid rounded-circle w-60"></a>
+            </div>
+            <div class="col-6 card-title align-self-center mb-0">
+              <h5>{{org.name}}</h5>
+            </div>
+          </div>
+          <ul class="list-group list-group-flush">
+            <li class="list-group-item">Description : {{org.description}}</li>
+          </ul>
+
+
+        </div>
+      </div>
+    </div>
+
+  </div>
+
+</div>
+
+
+
+
+
