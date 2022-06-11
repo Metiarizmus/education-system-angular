@@ -1,0 +1,29 @@
+<div class="col">
+  <div class="card border-dark mb-3" style="width: 18rem;">
+    <div class="card-header">{{course.org!.name}}
+      <button type="button" class="btn-close" style="float: right" (click)="confirmBox()" aria-label="Close"></button>
+
+    </div>
+    <div class="card-body">
+      <h5 class="card-title">{{course.name}}</h5>
+      <h6 class="card-subtitle mb-2 text-muted">{{course.description}}</h6>
+      <p class="card-text">{{course.plan}}</p>
+      <div class="card-footer text-muted">
+        <button [routerLink]="['/course-profile', course.id]" class="btn btn-secondary"
+                type="button" data-bs-toggle="modal" >More info
+        </button>
+
+        <button class="btn btn-secondary" (click)="editCourse()"
+                type="button" data-bs-toggle="modal" style="float: right">EDIT
+        </button>
+
+      </div>
+
+    </div>
+  </div>
+</div>
+
+
+
+
+

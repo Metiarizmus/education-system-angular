@@ -1,0 +1,26 @@
+
+
+<main >
+  <div class="center">
+    <app-list-org [isManager]="isManagersList"></app-list-org>
+  </div>
+
+  <hr>
+
+  <div class="courses" *ngIf="isLoadCourses">
+    <div class="row row-cols-1 row-cols-md-4 g-4">
+      <div *ngFor="let c of courses">
+        <app-card-course (updateEmitter)="updateListCourses($event)" [course]="c"></app-card-course>
+      </div>
+    </div>
+  </div>
+
+</main>
+
+
+<div style="height: 100px">
+
+</div>
+
+
+

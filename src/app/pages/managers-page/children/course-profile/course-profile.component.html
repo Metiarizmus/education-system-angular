@@ -1,0 +1,163 @@
+<link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300&display=swap" rel="stylesheet">
+<button type="button" class="btn menu-btn" (click)="clickEvent()">Open menu</button>
+
+<div class="d-flex" id="wrapper">
+  <div class="bg-light border-right" id="sidebar-wrapper"  [ngClass]="status ? 'hide' : 'show'">
+    <h2>
+      <div class="sidebar-heading">Develop panel </div>
+    </h2>
+
+    <div class="list-group myNav">
+      <ul>
+        <li>
+          <a class="list-group-item"
+             (click)="openModalTask()">Create task
+          </a>
+        </li>
+
+        <li>
+          <a class="list-group-item "
+             (click)="inviteUser()">Invite user
+          </a>
+        </li>
+      </ul>
+
+
+    </div>
+  </div>
+
+
+
+  <div id="page-content-wrapper">
+    <div class="container bootstrap snippets bootdey" *ngIf="isLoadProfile==true" >
+      <app-back-arrow></app-back-arrow>
+      <div class="panel-body inf-content">
+        <div class="row">
+
+          <div class="col">
+            <strong>Information</strong><br>
+            <hr>
+            <div class="table-responsive">
+              <table class="table table-user-information">
+
+                <tbody>
+                <tr>
+                  <td>
+                    <strong>
+                      <span class="glyphicon glyphicon-user  text-primary"></span>
+                      Name creator course
+                    </strong>
+                  </td>
+                  <td class="text-primary">
+                    {{course.managerName}}
+                  </td>
+                </tr>
+
+                <tr>
+                  <td>
+                    <strong>
+                      <span class="glyphicon glyphicon-user  text-primary"></span>
+                      Course name
+                    </strong>
+                  </td>
+                  <td class="text-primary">
+                    {{course.name}}
+                  </td>
+                </tr>
+
+                <tr>
+                  <td>
+                    <strong>
+                      <span class="glyphicon glyphicon-user  text-primary"></span>
+                      Course description
+                    </strong>
+                  </td>
+                  <td class="text-primary">
+                    {{course.description}}
+                  </td>
+                </tr>
+
+                <tr>
+                  <td>
+                    <strong>
+                      <span class="glyphicon glyphicon-user  text-primary"></span>
+                      Course plan
+                    </strong>
+                  </td>
+                  <td class="text-primary">
+                    {{course.plan}}
+                  </td>
+                </tr>
+
+                <tr>
+                  <td>
+                    <strong>
+                      <span class="glyphicon glyphicon-user  text-primary"></span>
+                      Date created
+                    </strong>
+                  </td>
+                  <td class="text-primary">
+                    {{course.dateCreat}}
+                  </td>
+                </tr>
+
+                <tr>
+                  <td>
+                    <strong>
+                      <span class="glyphicon glyphicon-user  text-primary"></span>
+                      Status
+                    </strong>
+                  </td>
+                  <td class="text-primary">
+                    {{course.statusCourseEnum}}
+                  </td>
+                </tr>
+
+
+                </tbody>
+
+              </table>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </div>
+  </div>
+
+</div>
+
+<hr>
+<h2 style="text-align: center">Tasks</h2>
+
+<div class="tasks-part">
+
+  <div class="header">
+
+    <div class="select">
+      <select class="form-select form-select-lg mb-3" aria-label=".form-select-lg example" ngModel
+              (ngModelChange)="mySelectHandler($event)">
+        <option *ngFor="let value of course.users" [ngValue]="value.email">{{value.email}}</option>
+      </select>
+    </div>
+
+  </div>
+
+  <div class="tasks-list" style="margin-left: 25rem" *ngIf="isLoadProfile==true">
+    <div *ngFor="let task of tasks">
+
+      <app-card-task [task]="task" (updateEmitter)="updateListTasks($event)"></app-card-task>
+
+    </div>
+  </div>
+
+</div>
+
+
+
+
+
+<app-spinner *ngIf="isLoadProfile == false"></app-spinner>
+
+
+

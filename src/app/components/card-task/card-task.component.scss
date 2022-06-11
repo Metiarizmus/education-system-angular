@@ -1,0 +1,68 @@
+.card {
+  box-shadow: 0 0 2px 0 white;
+  transition: .3s;
+  position: relative;
+  cursor: pointer;
+
+
+  &:hover {
+    transform: scale(1.05);
+    box-shadow: 0 0 4px 0 white;
+  }
+}
+
+.card-subtitle {
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+.card-text {
+  font-size: 14px;
+  font-family: Georgia, 'Times New Roman', Times, serif;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.st {
+  width: 100%;
+  padding-bottom: 3px;
+  font-size: 20px;
+  font-weight: 600;
+}
+
+.st:not(:last-child){
+  margin-bottom: 10px;
+}
+
+.dropdown-menu {
+  padding: 0;
+}
+
+.NOT_START {
+  background-color: rgba(73, 76, 84, 0.84);
+}
+
+.st:first-child {
+  color: green;
+}
+
+.st:nth-child(2) {
+  color :#0dcaf0;
+}
+
+.st:last-child {
+  color: red;
+}
+
+.IN_PROGRESS {
+  background-color:#0dcaf0;
+}
+
+.DONE {
+  background-color: green;
+}
+
+.PROBLEM {
+  background-color: red;
+}

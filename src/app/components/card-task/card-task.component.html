@@ -1,0 +1,29 @@
+<div class="col">
+  <div class="card border-dark mb-3" style="width: 70%">
+    <div class="card-header">
+      <button type="button" *ngIf="userRole==='ROLE_MANAGER'" class="btn-close" style="float: right" (click)="confirmBox()" aria-label="Close"></button>
+    </div>
+    <div class="card-body">
+      <h5 class="card-title">{{task.name}}</h5>
+      <h6 class="card-subtitle mb-2 text-muted">{{task.text}}</h6>
+      <p class="card-text">{{task.description}}</p>
+      <div class="card-footer text-muted">
+
+          <div ngbDropdown placement="top-end" class="d-inline-block">
+            <button type="button" class="btn btn-primary" id="dropdownBasic2" [ngClass]="status" ngbDropdownToggle>{{status}}</button>
+            <div ngbDropdownMenu aria-labelledby="dropdownBasic2">
+              <button type="button" ngbDropdownItem class="btn st" (click)="changeStatus('DONE')">DONE</button>
+              <button type="button" ngbDropdownItem class="btn st" (click)="changeStatus('IN_PROGRESS')">IN PROGRESS</button>
+              <button type="button" ngbDropdownItem class="btn st" (click)="changeStatus('PROBLEM')">PROBLEM</button>
+            </div>
+          </div>
+
+        <button class="btn btn-secondary" *ngIf="userRole==='ROLE_MANAGER'"
+                type="button" data-bs-toggle="modal" style="float: right">EDIT
+        </button>
+
+      </div>
+
+    </div>
+  </div>
+</div>

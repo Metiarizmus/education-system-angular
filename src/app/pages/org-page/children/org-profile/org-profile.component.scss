@@ -1,0 +1,195 @@
+
+
+
+.inf-content{
+  border:1px solid #DDDDDD;
+  -webkit-border-radius:10px;
+  -moz-border-radius:10px;
+  border-radius:10px;
+  box-shadow: 7px 7px 7px rgba(0, 0, 0, 0.3);
+
+  font-size: 20px;
+
+}
+
+.text-primary {
+  color: white !important;
+  font-weight: 600;
+}
+body {
+  overflow-x: hidden;
+}
+
+
+///////////////////////
+
+.menu-btn {
+  font-weight: 600;
+  font-size: 17px;
+  background-color: #ffed00;
+}
+
+#sidebar-wrapper {
+  min-height: 50vh;
+  margin-left: -15rem;
+  background-color: #ffd700;
+  -webkit-transition: margin .25s ease-out;
+  -moz-transition: margin .25s ease-out;
+  -o-transition: margin .25s ease-out;
+  transition: margin .25s ease-out;
+  font-size: 20px;
+  border-radius: 10px;
+
+}
+
+#sidebar-wrapper .sidebar-heading {
+  padding: 0.875rem 1.25rem;
+  font-size: 1.2rem;
+}
+
+#sidebar-wrapper .list-group {
+  width: 15rem;
+}
+
+.myNav > ul {
+  display: block;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.myNav > ul > li {
+
+  :hover {
+    cursor: pointer;
+  }
+}
+
+.list-group-item {
+  border: none;
+}
+
+.myNav > ul > li:nth-child(2) {
+  -webkit-transition: opacity .5s .2s, -webkit-transform .5s .2s;
+  transition: opacity .5s .2s, transform .5s .2s;
+}
+
+.myNav > ul > li:nth-child(3) {
+  -webkit-transition: opacity .5s .3s, -webkit-transform .5s .3s;
+  transition: opacity .5s .3s, transform .5s .3s;
+}
+
+.myNav > ul > li:nth-child(4) {
+  -webkit-transition: opacity .5s .4s, -webkit-transform .5s .4s;
+  transition: opacity .5s .4s, transform .5s .4s;
+}
+
+.myNav > ul > li:nth-child(5) {
+  -webkit-transition: opacity .5s .5s, -webkit-transform .5s .5s;
+  transition: opacity .5s .5s, transform .5s .5s;
+}
+
+.myNav > ul > li:nth-child(6) {
+  -webkit-transition: opacity .5s .6s, -webkit-transform .5s .6s;
+  transition: opacity .5s .6s, transform .5s .6s;
+}
+
+.myNav > ul > li:nth-child(7) {
+  -webkit-transition: opacity .5s .7s, -webkit-transform .5s .7s;
+  transition: opacity .5s .7s, transform .5s .7s;
+}
+
+.myNav > ul > li > a {
+  display: inline-block;
+  position: relative;
+  font-family: 'Open Sans', sans-serif;
+  font-weight: 500;
+  color: #000000;
+  width: 100%;
+  text-decoration: none;
+  /* плавный переход */
+  -webkit-transition: color .5s ease, padding .5s ease;
+  -moz-transition: color .5s ease, padding .5s ease;
+  transition: color .5s ease, padding .5s ease;
+}
+
+.myNav > ul > li > a:hover,
+.myNav > ul > li > a:focus {
+  padding-left: 15px;
+}
+
+.myNav > ul > li > a:before {
+  content: '';
+  display: block;
+  position: absolute;
+  right: 0;
+  bottom: 0;
+  height: 1px;
+  width: 100%;
+  -webkit-transition: width 0s ease;
+  transition: width 0s ease;
+}
+
+.myNav > ul > li > a:after {
+  content: '';
+  display: block;
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  height: 1px;
+  width: 100%;
+  background: #3bc1a0;
+  -webkit-transition: width .5s ease;
+  transition: width .5s ease;
+}
+
+
+/**
+ * анимируем линию подчеркивания
+ * ссылок при наведении
+ */
+
+.myNav > ul > li > a:hover:before {
+  width: 0;
+  background: #3bc1a0;
+  -webkit-transition: width .5s ease;
+  transition: width .5s ease;
+}
+
+.myNav > ul > li > a:hover:after {
+  width: 0;
+  background: transparent;
+  -webkit-transition: width 0s ease;
+  transition: width 0s ease;
+}
+
+@media (min-width: 768px) {
+  #sidebar-wrapper {
+    margin-left: 0;
+  }
+
+  #page-content-wrapper {
+    min-width: 0;
+    width: 100%;
+  }
+  .show
+  {
+    margin-left: 0!important;
+  }
+  .hide
+  {
+    margin-left: -15rem!important;
+  }
+}
+@media (max-width: 767px) {
+  .show
+  {
+    margin-left: -15rem!important;
+  }
+  .hide
+  {
+    margin-left: -0!important;
+  }
+}
+
+

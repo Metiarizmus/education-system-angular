@@ -1,0 +1,112 @@
+<link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300&display=swap" rel="stylesheet">
+
+<button type="button" class="btn menu-btn" (click)="clickEvent()" *ngIf="isRootAdmin()">Open menu</button>
+
+<div class="d-flex" id="wrapper">
+  <div class="bg-light border-right" id="sidebar-wrapper" *ngIf="isRootAdmin()" [ngClass]="status ? 'hide' : 'show'">
+    <h2>
+      <div class="sidebar-heading">Develop panel</div>
+    </h2>
+
+    <div class="list-group myNav">
+      <ul>
+        <li><a class="list-group-item" (click)="roleManager(); openModal()">Invite manager</a></li>
+        <li><a class="list-group-item" (click)="roleAdmin(); openModal()">Invite admin</a></li>
+        <li><a class="list-group-item" (click)="deleteOrg()">Delete org</a></li>
+      </ul>
+
+    </div>
+  </div>
+
+
+  <div id="page-content-wrapper" *ngIf="isLoadProfile">
+    <div class="container bootstrap snippets bootdey">
+      <app-back-arrow></app-back-arrow>
+      <div class="panel-body inf-content">
+        <div class="row">
+          <div class="col-md-4">
+            <div *ngIf="org.avatar">
+              <img alt="" style="width:600px;" title="" class="img-circle img-thumbnail isTooltip"
+                   src="{{'data:image/jpg;base64,' + org.avatar}}" data-original-title="Usuario">
+            </div>
+          </div>
+
+
+          <div class="col-md-6">
+            <strong>Information</strong><br>
+            <div class="table-responsive">
+              <table class="table table-user-information">
+                <tbody>
+
+                <tr>
+                  <td>
+                    <strong>
+                      <span class="glyphicon glyphicon-user  text-primary"></span>
+                      Name
+                    </strong>
+                  </td>
+                  <td class="text-primary">
+                    {{org.name}}
+                  </td>
+                </tr>
+                <tr>
+                  <td>
+                    <strong>
+                      <span class="glyphicon glyphicon-cloud text-primary"></span>
+                      Status
+                    </strong>
+                  </td>
+                  <td class="text-primary">
+                    {{org.status}}
+                  </td>
+                </tr>
+                <tr>
+                  <td>
+                    <strong>
+                      <span class="glyphicon glyphicon-envelope text-primary"></span>
+                      Date created
+                    </strong>
+                  </td>
+                  <td class="text-primary">
+                    {{org.dateCreated}}
+                  </td>
+                </tr>
+                <tr>
+                  <td>
+                    <strong>
+                      <span class="glyphicon glyphicon-calendar text-primary"></span>
+                      Subscribers
+                    </strong>
+                  </td>
+                  <td class="text-primary">
+                    {{countPeople}}
+                  </td>
+                </tr>
+                <tr>
+                  <td>
+                    <strong>
+                      <span class="glyphicon glyphicon-calendar text-primary"></span>
+                      Description
+                    </strong>
+                  </td>
+                  <td class="text-primary">
+                    {{org.description}}
+                  </td>
+                </tr>
+
+                </tbody>
+              </table>
+            </div>
+          </div>
+
+        </div>
+      </div>
+
+    </div>
+  </div>
+</div>
+
+
+<app-spinner *ngIf="!isLoadProfile"></app-spinner>
+
+

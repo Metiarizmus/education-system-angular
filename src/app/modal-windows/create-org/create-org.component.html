@@ -1,0 +1,79 @@
+<section class="" style="margin-top: 40px">
+  <div class="">
+    <div class="row d-flex justify-content-center align-items-center h-80 mx-1">
+      <div class="col-sm-8 col-lg-6">
+        <div class="card text-black" style="border-radius: 25px;">
+          <div class="card-body">
+            <div class="row justify-content-center">
+              <div class="col-sm-10 order-2 order-lg-0">
+
+                <p class="text-center h1 fw-bold mb-4 mx-md-4 mt-1">Create organization</p>
+
+                <form class="mx-1 mx-md-4" [formGroup]="form" (ngSubmit)="createOrg()" style="width: 72%; padding-left: 20%" enctype="multipart/form-data">
+
+                  <div class="d-flex flex-row align-items-center mb-4">
+                    <div class="form-outline flex-fill mb-0">
+                      <input type="text" id="form3Example1c" class="form-control" placeholder="Name org" formControlName="name"/>
+                      <div
+                        *ngIf="form.get('name')?.invalid && form.get('name')?.touched"
+                        class="validation"
+                      >
+                        <small *ngIf="form.get('name')?.errors?.['required']">
+                           Name cant be empty
+                        </small>
+                      </div>
+
+                    </div>
+                  </div>
+
+                  <div class="d-flex flex-row align-items-center mb-4">
+                    <div class="form-outline flex-fill mb-0">
+                      <input type="text" id="form3Example2c" class="form-control" placeholder="description" formControlName="description"/>
+                      <div
+                        *ngIf="form.get('description')?.invalid && form.get('description')?.touched"
+                        class="validation"
+                      >
+                        <small *ngIf="form.get('description')?.errors?.['required']">
+                          Description cant be empty
+                        </small>
+                      </div>
+                    </div>
+                  </div>
+
+                  <div class="d-flex flex-row align-items-center mb-4">
+                    <div class="form-outline flex-fill mb-0">
+                      <input type="file" id="form3Example2c" class="form-control"
+                             formControlName="avatar"
+                             (change)="onSelectFile($event)"
+                      >
+                    </div>
+                  </div>
+
+                  <div class="d-flex flex-row mb-4">
+                    <div class="form-outline flex-fill mb-0">
+                      <select formControlName="statusOrg">
+                        <option>PUBLIC</option>
+                        <option>PRIVATE</option>
+                      </select>
+
+                    </div>
+                  </div>
+
+                  <div class="d-flex justify-content-center mx-4 mb-3 mb-lg-4">
+                    <button type="submit" class="btn btn-primary btn-lg" [disabled]="form.invalid || form.pending ">Create</button>
+                  </div>
+
+                </form>
+
+                <div>
+                </div>
+
+              </div>
+
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>

@@ -1,0 +1,12 @@
+.card {
+  box-shadow: 0 0 2px 0 white;
+  transition: .3s;
+  position: relative;
+  cursor: pointer;
+
+
+  &:hover {
+    transform: scale(1.05);
+    box-shadow: 0 0 4px 0 white;
+  }
+}
