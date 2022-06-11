@@ -1,7 +1,8 @@
 import {Injectable} from "@angular/core";
-import {AuthService} from "../shared/services/auth.service";
+import {AuthService} from "../shared/services/api-service/auth.service";
 import {HttpErrorResponse, HttpEvent, HttpHandler, HttpInterceptor, HttpRequest} from "@angular/common/http";
 import {catchError, Observable, throwError} from "rxjs";
+import {LocalStorageService} from "ngx-webstorage";
 
 @Injectable({
   providedIn: 'root'
@@ -9,12 +10,13 @@ import {catchError, Observable, throwError} from "rxjs";
 export class AuthInterceptor implements HttpInterceptor {
 
 
-  constructor(private authService: AuthService) {
+  constructor(private authService: AuthService,
+              private storage: LocalStorageService) {
   }
 
   intercept(req: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
-    req = req.clone({headers: req.headers.set('Content-Type', 'application/json')});
-    const token: string | null = localStorage.getItem("accessToken");
+    req = req.clone();
+    const token: string | null = this.storage.retrieve("accessToken")
     if (token) {
       req = req.clone({headers: req.headers.set('Authorization', 'Bearer ' + token)});
     }

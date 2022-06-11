@@ -1,16 +1,16 @@
-import {Component, OnInit} from '@angular/core';
+import {Component, OnDestroy, OnInit} from '@angular/core';
 import {User} from "../../shared/models/user";
-import {UserService} from "../../shared/services/user.service";
+import {UserService} from "../../shared/services/api-service/user.service";
 import {HttpErrorResponse} from "@angular/common/http";
 import {Course} from "../../shared/models/course";
-import {CourseService} from "../../shared/services/course.service";
+import {CourseService} from "../../shared/services/api-service/course.service";
 
 @Component({
-  selector: 'app-profile-page',
-  templateUrl: './profile-page.component.html',
-  styleUrls: ['./profile-page.component.scss']
+  selector: 'app-user-profile-page',
+  templateUrl: './user-profile.component.html',
+  styleUrls: ['./user-profile..component.scss']
 })
-export class ProfilePageComponent implements OnInit {
+export class UserProfileComponent implements OnInit, OnDestroy {
 
   user!: User
   courses!: Course
@@ -25,6 +25,7 @@ export class ProfilePageComponent implements OnInit {
       this.user = data
       this.isLoadProfile = true
     })
+
     this.getCourses()
   }
 
@@ -32,20 +33,15 @@ export class ProfilePageComponent implements OnInit {
     this.courseService.getUsersCourses().subscribe(
       (resp: Course) => {
         this.courses = resp;
-
       }, (error: HttpErrorResponse) => {
 
       }
     )
   }
 
+  ngOnDestroy(): void {
+    this.userService.userDataBroadcast.unsubscribe()
+  }
 
-  // rol() {
-  //
-  //   if (JSON.stringify(this.user.roles.nameRoles==='ROLE_USER')){
-  //     console.log("da")
-  //   }
-  //   else console.log('NET')
-  // }
 
 }

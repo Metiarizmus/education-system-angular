@@ -1,4 +1,4 @@
-<div class="main-container" style="height: 100%">
+<div class="main-container" style="height: 100%; width: 100%">
 
   <nav class="navbar navbar-expand-lg navbar-light">
     <div class="container-fluid">
@@ -20,34 +20,36 @@
             <a class="nav-link active" aria-current="page" routerLink="/orgs">Organizations</a>
           </li>
 
+          <li class="nav-item" routerLinkActive="active" *ngIf="role=='ROLE_MANAGER'">
+            <a class="nav-link active" aria-current="page" routerLink="/managers">Managers</a>
+          </li>
+
+
         </ul>
 
-        <div class="dropdown" *ngIf="isAuthenticate()">
-          <a class="nav-link" role="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false"
+        <div ngbDropdown class="d-inline-block"  *ngIf="isAuthenticate()">
+          <a class="nav-link" role="button" id="dropdownBasic1" ngbDropdownToggle aria-expanded="false"
              aria-haspopup="true">
-            <div *ngIf="user.avatar != null">
-              <img src="{{'data:image/jpg;base64,' + user.avatar}}" style="width: 45px;height: 45px"
+            <div>
+              <img src="{{'data:image/jpg;base64,' + user.avatar}}"  style="width: 45px;height: 45px"
                    class="rounded-circle">
             </div>
 
-            <div *ngIf="user.avatar == null">
-              <img src="https://gravatar.com/avatar/1c0d054ee842355be78d59ec917bd7f9?s=400&d=robohash&r=x"
-                   style="width: 45px;height: 45px" class="rounded-circle">
-            </div>
           </a>
-          <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1" style="right: 0; left: auto">
-            <li class="dropdown-item">{{user.firstName}}  {{user.lastName}}</li>
+          <ul ngbDropdownMenu aria-labelledby="dropdownBasic1" style="right: 0; left: auto;">
+            <li class="dropdown-item"><b>{{user.firstName}}  {{user.lastName}}</b></li>
             <li><a class="dropdown-item" [routerLink]="['/profile']">My profile</a></li>
+            <li><a class="dropdown-item" [routerLink]="['/my-orgs']">My organizations</a></li>
             <li><a class="dropdown-item" (click)="logout()">Logout</a></li>
           </ul>
         </div>
-
 
       </div>
 
     </div>
   </nav>
 
+  <router-outlet></router-outlet>
 </div>
 
-<router-outlet></router-outlet>
+

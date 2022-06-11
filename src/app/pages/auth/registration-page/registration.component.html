@@ -1,4 +1,4 @@
-<section class="" style="height: 89.2vh; margin-top: 40px">
+<section class="" style="margin-top: 40px">
   <div class="">
     <div class="row d-flex justify-content-center align-items-center h-80 mx-1">
       <div class="col-sm-8 col-lg-6">
@@ -52,10 +52,10 @@
                     </div>
                   </div>
 
-                  <div class="d-flex flex-row align-items-center mb-4">
+                  <div class="d-flex flex-row align-items-center mb-4" *ngIf="token.length==0">
                     <i class="fas fa-envelope fa-lg me-3 fa-fw"></i>
                     <div class="form-outline flex-fill mb-0">
-                      <input type="email" id="form3Example3c" class="form-control" placeholder="Email"  formControlName="email"/>
+                      <input type="email" id="form3Example3c" class="form-control" placeholder="Email" required  formControlName="email"/>
                       <div
                         *ngIf="form.get('email')?.invalid && form.get('email')?.touched"
                         class="validation"

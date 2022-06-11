@@ -1,3 +1,4 @@
+
 import {Injectable} from '@angular/core';
 import {CanActivate, Router} from "@angular/router";
 import {lastValueFrom} from "rxjs";
@@ -5,6 +6,7 @@ import {JwtHelperService} from '@auth0/angular-jwt';
 import {environment} from "../../environments/environment";
 import {HttpClient} from "@angular/common/http";
 import {NotificationService} from "../shared/services/notification.service";
+import {AuthService} from "../shared/services/api-service/auth.service";
 
 @Injectable({
   providedIn: 'root'
@@ -13,22 +15,27 @@ export class AuthGuardService implements CanActivate{
 
   public jwtHelper: JwtHelperService = new JwtHelperService();
 
-  constructor(private router: Router, private http: HttpClient, private notification: NotificationService) {
+  constructor(private router: Router,
+              private http: HttpClient,
+              private notification: NotificationService,
+              private auth: AuthService) {
   }
 
-  async canActivate() {
+  canActivate() :boolean {
+
+    if (!this.auth.isAuthenticated()) {
+      this.router.navigate(["/login"])
+      return false;
+    }
+
     const token = localStorage.getItem("accessToken");
-
-    if (token && !this.jwtHelper.isTokenExpired(token)) {
-      return true;
-    }
-
-    const isRefreshSuccess = await this.refreshingTokens(token);
+    const isRefreshSuccess = this.refreshingTokens(token);
     if (!isRefreshSuccess) {
-      await this.router.navigate(["/login"]);
+      this.router.navigate(["/login"]);
+      return false;
     }
 
-    return isRefreshSuccess;
+    return true;
   }
 
   private async refreshingTokens(token: string | null): Promise<boolean> {

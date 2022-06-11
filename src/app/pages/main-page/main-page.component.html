@@ -1,1 +1,41 @@
-main page work great!!
+<div>
+
+  <div class="header">
+
+
+    <div class="select">
+      <select class="form-select form-select-lg mb-3" aria-label=".form-select-lg example" ngModel
+              (ngModelChange)="mySelectHandler($event)">
+        <option value="" selected="selected">{{courses[0].name}}</option>
+        <option *ngFor="let value of courses" [ngValue]="value.id">{{value.name}}</option>
+      </select>
+    </div>
+
+    <div class="filter">
+      <select class="form-select form-select-lg mb-3" aria-label=".form-select-lg example" ngModel
+              [(ngModel)]="sel" name="sel"
+      >
+        <option [ngValue]="'ALL'">SHOW ALL</option>
+        <option [ngValue]="'DONE'">DONE</option>
+        <option [ngValue]="'IN_PROGRESS'" value="" selected="selected">IN_RPOGRESS</option>
+        <option [ngValue]="'PROBLEM'">PROBLEM</option>
+        <option value="" selected="selected" [ngValue]="'NOT_START'">NOT_START</option>
+
+      </select>
+    </div>
+
+
+  </div>
+
+  <div class="main">
+
+    <div class="tasks-list" style="margin-left: 25rem">
+      <div *ngFor="let task of tasks | statusFilter: sel | statusSort">
+
+        <app-card-task [task]="task"></app-card-task>
+
+      </div>
+    </div>
+  </div>
+
+</div>

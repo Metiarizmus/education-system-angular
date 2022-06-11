@@ -1,10 +1,11 @@
 import {Component, OnInit} from '@angular/core';
 import {FormBuilder, FormControl, FormGroup, Validators} from "@angular/forms";
 import {LoginRequestUser} from "../../../payload/request/login-request.user";
-import {AuthService} from "../../../shared/services/auth.service";
-import {ActivatedRoute, Router} from "@angular/router";
+import {AuthService} from "../../../shared/services/api-service/auth.service";
+import {ActivatedRoute, Params, Router} from "@angular/router";
 import {ToastrService} from "ngx-toastr";
 import {TokenStorageService} from "../../../shared/services/token-storage.service";
+import {CourseService} from "../../../shared/services/api-service/course.service";
 
 @Component({
   selector: 'app-login-page',
@@ -15,18 +16,18 @@ export class LoginComponent implements OnInit {
 
   form!: FormGroup
   loginRequestUser: LoginRequestUser
-  private isError?: boolean;
+  isError?: boolean;
+  notCorrectEmailOrPassword: boolean = false
+  token: string = ""
 
-  isLoggedIn = false;
-  isLoginFailed = false;
-  errorMessage = '';
-  roles: string[] = [];
 
   constructor(private builder: FormBuilder,
               private authService: AuthService,
               private router: Router,
               private toastr: ToastrService,
-              ) {
+              private route: ActivatedRoute,
+              private courseService: CourseService
+  ) {
     this.loginRequestUser = {
       email: '',
       password: ''
@@ -34,6 +35,15 @@ export class LoginComponent implements OnInit {
   }
 
   ngOnInit() {
+
+    this.route.params.subscribe((params: Params) => {
+      if (params['confirmToken'] != undefined) {
+        this.token = params['confirmToken']
+        alert(this.token)
+        this.acceptCourse()
+      }
+    })
+
     this.form = this.builder.group({
 
       email: new FormControl('', [
@@ -45,7 +55,6 @@ export class LoginComponent implements OnInit {
         Validators.required, Validators.minLength(4)
       ])
     });
-
   }
 
   login() {
@@ -55,12 +64,25 @@ export class LoginComponent implements OnInit {
     this.authService.login(this.loginRequestUser).subscribe(data => {
       if (data) {
         this.toastr.success('Login Successful')
-        this.router.navigateByUrl('/main')
+
+          this.router.navigate(['/main'])
+
+
         this.isError = false
-      }else {
+      } else {
         this.isError = true
       }
-    })
+    }, (error => {
+      this.notCorrectEmailOrPassword = true
+    }))
+  }
+
+  acceptCourse() {
+    this.courseService.acceptCourse(this.token).subscribe(
+      () => {
+      this.toastr.success("Enter to your acc")
+      },error => alert("smth went wrong:(")
+    )
   }
 
 }

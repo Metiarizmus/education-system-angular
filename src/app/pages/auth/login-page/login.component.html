@@ -49,17 +49,19 @@
 
                         <small *ngIf="form.get('password')?.errors?.['minlength']">
                           The length must be at
-                          least {{form.get('password')?.errors?.['minlength']?.['requiredLength']}}characters .
+                          least  {{form.get('password')?.errors?.['minlength']?.['requiredLength']}}characters .
                           Now it is equal =  {{form.get('password')?.errors?.['minlength']?.['actualLength']}}
                         </small>
 
                       </div>
+                      <small *ngIf="notCorrectEmailOrPassword" style="color: red">
+                        Password or email not correct.
+                      </small>
                     </div>
                   </div>
 
                   <div class="d-flex justify-content-center mx-4 mb-3 mb-lg-4">
-                    <button type="submit" class="btn btn-primary btn-lg" [disabled]="form.invalid || form.pending ">Log
-                      in
+                    <button type="submit" class="btn btn-primary btn-lg" [disabled]="form.invalid || form.pending ">Log in
                     </button>
                   </div>
 

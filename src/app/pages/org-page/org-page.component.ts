@@ -1,7 +1,4 @@
 import {Component, OnInit} from '@angular/core';
-import {OrgService} from "../../shared/services/org.service";
-import {Organization} from "../../shared/models/Organization";
-import {HttpErrorResponse} from "@angular/common/http";
 
 @Component({
   selector: 'app-org',
@@ -10,23 +7,27 @@ import {HttpErrorResponse} from "@angular/common/http";
 })
 export class OrgPageComponent implements OnInit {
 
-  orgs!: Organization[];
+  count: number = 0
+  isLoadProfile: boolean = false
+  listMyOrg: boolean = false
 
-  constructor(private orgService: OrgService) {
+  constructor() {
+
   }
 
   ngOnInit(): void {
-
   }
 
-  getOrgs(): void {
-    this.orgService.getAllPublicOrg().subscribe(
-      (response: Organization[]) => {
-        this.orgs = response;
-      },
-  )
-    ;
+  firstTempl() {
+    this.count=1
   }
 
+  secondTempl() {
+    this.count=2
+  }
 
+  thirdTempl() {
+    this.count=3
+    this.listMyOrg = true
+  }
 }

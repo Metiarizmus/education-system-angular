@@ -1,6 +1,9 @@
 import {Role} from "./role";
+import {Organization} from "./organization";
+import {Course} from "./course";
 
 export interface User {
+  id: number,
   firstName: String,
   lastName: String,
   email: String,
@@ -8,5 +11,7 @@ export interface User {
   password: String
   avatar?: File | null,
   dateRegistr: String,
-  roles: Role
+  roles?: Role,
+  orgs?: Array<Organization>,
+  courses?: Array<Course>
 }

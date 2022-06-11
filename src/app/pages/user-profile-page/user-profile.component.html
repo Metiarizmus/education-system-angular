@@ -1,0 +1,88 @@
+
+
+
+<div class="container bootstrap snippets bootdey" *ngIf="isLoadProfile==true" style="height: 600px">
+
+  <div class="panel-body inf-content">
+    <div class="row">
+      <div class="col-md-4">
+        <div *ngIf="user.avatar">
+          <img alt="" style="width:600px;" title="" class="img-circle img-thumbnail isTooltip"
+               src="{{'data:image/jpg;base64,' + user.avatar}}" data-original-title="Usuario">
+        </div>
+      </div>
+
+
+      <div class="col-md-6">
+        <strong>Information</strong><br>
+        <div class="table-responsive">
+          <table class="table table-user-information">
+            <tbody>
+
+            <tr>
+              <td>
+                <strong>
+                  <span class="glyphicon glyphicon-user  text-primary"></span>
+                  Name
+                </strong>
+              </td>
+              <td class="text-primary">
+                {{user.firstName}}
+              </td>
+            </tr>
+            <tr>
+              <td>
+                <strong>
+                  <span class="glyphicon glyphicon-cloud text-primary"></span>
+                  Lastname
+                </strong>
+              </td>
+              <td class="text-primary">
+                {{user.lastName}}
+              </td>
+            </tr>
+
+
+            <tr>
+              <td>
+                <strong>
+                  <span class="glyphicon glyphicon-envelope text-primary"></span>
+                  Email
+                </strong>
+              </td>
+              <td class="text-primary">
+                {{user.email}}
+              </td>
+            </tr>
+            <tr>
+              <td>
+                <strong>
+                  <span class="glyphicon glyphicon-calendar text-primary"></span>
+                  created
+                </strong>
+              </td>
+              <td class="text-primary">
+                {{user.dateRegistr}}
+              </td>
+            </tr>
+
+            </tbody>
+          </table>
+        </div>
+      </div>
+
+      <div class="arrow-6" style="width: 40px">
+        <svg width="18px" height="17px" viewBox="0 0 18 17" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+          <g transform="translate(8.500000, 8.500000) scale(-1, 1) translate(-8.500000, -8.500000)">
+            <polygon class="arrow-6-pl" points="16.3746667 8.33860465 7.76133333 15.3067621 6.904 14.3175671 14.2906667 8.34246869 6.908 2.42790698 7.76 1.43613596"></polygon>
+            <polygon class="arrow-6-pl-fixed" points="16.3746667 8.33860465 7.76133333 15.3067621 6.904 14.3175671 14.2906667 8.34246869 6.908 2.42790698 7.76 1.43613596"></polygon>
+            <path d="M-1.48029737e-15,0.56157424 L-1.48029737e-15,16.1929159 L9.708,8.33860465 L-2.66453526e-15,0.56157424 L-1.48029737e-15,0.56157424 Z M1.33333333,3.30246869 L7.62533333,8.34246869 L1.33333333,13.4327013 L1.33333333,3.30246869 L1.33333333,3.30246869 Z"></path>
+          </g>
+        </svg>
+      </div>
+
+    </div>
+  </div>
+
+</div>
+<app-spinner *ngIf="isLoadProfile == false"></app-spinner>

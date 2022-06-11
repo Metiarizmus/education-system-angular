@@ -1,0 +1,27 @@
+.header {
+  margin-bottom: 20px;
+  padding: 0;
+  width: 100%;
+
+
+  .select {
+    width: 20%;
+
+  }
+
+  .filter {
+    width: 20%;
+    float: right;
+  }
+
+  div {
+    display: inline-block;
+  }
+
+}
+
+
+.main {
+  border: 1px slateblue;
+}
+

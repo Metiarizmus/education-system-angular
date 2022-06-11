@@ -1,25 +1,37 @@
-.content {
-
-  font-size: 20px;
+* {
+  background-color: rgba(51, 51, 51, 0);
+}
+.wrapper {
+  float: left;
   display: flex;
   width: 100%;
   height: 100%;
 
-  .novig {
-    margin-right: 40px;
-    background-color: #eeeff1;
-    height: 400px;
-    span {
-      font-weight:600;
-      color: black;
-    }
+  overflow:hidden;
+  overflow-x:hidden;  /*для горизонтального*/
 
-    a:hover {
-      cursor: pointer;
-    }
+  #sidebarMenu {
+
+    height: 85vh;
+    width: 20%;
+    margin-right: 20px;
+    font-size: 25px;
   }
 
+  .main {
+    padding: 10px;
+    width: 90%;
 
+  }
 
+  .list-group {
+    min-height: 100px;
+
+    a:hover{
+      cursor: pointer;
+      background-color: #d7816a;
+
+    }
+  }
 
 }

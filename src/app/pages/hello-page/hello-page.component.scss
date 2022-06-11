@@ -20994,7 +20994,7 @@ blockquote .small:before {
   touch-action: none;
   z-index: 1500;
   -webkit-text-size-adjust: 100%;
-  /* create separate layer, to avoid paint on window.onscroll in webkit/blink */
+  /* create-org separate layer, to avoid paint on window.onscroll in webkit/blink */
   -webkit-backface-visibility: hidden;
   outline: none;
 }
@@ -21735,7 +21735,7 @@ a.pswp__share--download:hover {
 .pswp__ui--hidden .pswp__caption,
 .pswp__ui--hidden .pswp__button--arrow--left,
 .pswp__ui--hidden .pswp__button--arrow--right {
-  /* Force paint & create composition layer for controls. */
+  /* Force paint & create-org composition layer for controls. */
   opacity: 0.001;
 }
 

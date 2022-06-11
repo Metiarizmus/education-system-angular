@@ -14,6 +14,10 @@ input {
   color: red;
 }
 
-//*{
-//  background: url("https://oboi.ws/wallpapers/17_12338_oboi_firewatch_1920x1080.jpg") no-repeat;
-//}
+::-webkit-scrollbar {
+  width: 0;
+}
+
+.vh-100 {
+  height: 10vh !important;
+}

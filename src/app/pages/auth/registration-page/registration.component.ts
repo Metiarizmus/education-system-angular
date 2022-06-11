@@ -2,8 +2,8 @@ import {Component, OnInit} from '@angular/core';
 import {FormBuilder, FormControl, FormGroup, Validators} from "@angular/forms";
 import {FormValidators} from "../../../validator/form.validators";
 import {SignupRequestUser} from "../../../payload/request/signup-request.user";
-import {AuthService} from "../../../shared/services/auth.service";
-import {ActivatedRoute, Router} from "@angular/router";
+import {AuthService} from "../../../shared/services/api-service/auth.service";
+import {ActivatedRoute, Params, Router} from "@angular/router";
 import {ToastrService} from "ngx-toastr";
 import {NotificationService} from "../../../shared/services/notification.service";
 
@@ -17,7 +17,7 @@ export class RegistrationComponent implements OnInit {
 
   userRequest: SignupRequestUser;
   form!: FormGroup
-
+  token: string = ""
   constructor(private builder: FormBuilder,
               private authService: AuthService,
               private alertService: NotificationService,
@@ -38,6 +38,14 @@ export class RegistrationComponent implements OnInit {
 
 
   ngOnInit() {
+
+    this.route.params.subscribe((params: Params) => {
+      if (params['confirmToken'] != undefined){
+        this.token = params['confirmToken']
+      }
+    })
+
+
     this.form = this.builder.group({
         firstName: new FormControl('', [
           Validators.required
@@ -47,7 +55,6 @@ export class RegistrationComponent implements OnInit {
           Validators.required
         ]),
         email: new FormControl('', [
-          Validators.required,
           Validators.email,
           //FormValidators.uniqEmail as AsyncValidatorFn
         ]),
@@ -72,27 +79,36 @@ export class RegistrationComponent implements OnInit {
   onSelectFile(event : any) {
     if (event.target.files.length > 0) {
       this.selectedFile = event.target.files[0];
-      console.log(this.selectedFile);
     }
   }
 
   signup() {
+
+    this.getDataForm()
+
+      this.authService.signup(this.userRequest, this.selectedFile, this.token).subscribe(async (data) => {
+          this.toastr.success(data)
+          await new Promise(f => setTimeout(f, 1500));
+
+          await this.router.navigate(['/login'],
+            {queryParams: {registered: 'true'}})
+        }, () => {
+          this.toastr.error('Registration Failed! Please try again')
+        }
+      )
+
+  }
+
+
+  getDataForm() {
     const formData = {...this.form?.value}
     this.userRequest.firstName = formData.firstName;
     this.userRequest.lastName = formData.lastName;
-    this.userRequest.email = formData.email;
+    if (this.token.length != 0) {
+      this.userRequest.email = formData.email;
+    }
     this.userRequest.phoneNumber = formData.phoneNumber;
     this.userRequest.password = formData.password;
-
-
-    this.authService.signup(this.userRequest, this.selectedFile).subscribe(() => {
-        this.router.navigate(['/login-page'],
-          {queryParams: {registered: 'true'}})
-      }, () => {
-        this.toastr.error('Registration Failed! Please try again')
-      }
-    )
-
   }
 
 
