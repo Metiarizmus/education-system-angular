@@ -29,6 +29,7 @@ export class TaskService {
 
   public getAllTasksForUser(idCourse: number): Observable<Task[]> {
     return this.httpClient.get<Task[]>(`${this.urlUser}/tasks/${idCourse}`)
+
   }
 
   public getAllTasksForUserManager(idCourse: number, email: string): Observable<Task[]> {
